@@ -1,0 +1,69 @@
+{
+    "sitePreferences": [
+      {
+        "id": "1",
+        "name": "enableScrollToTop",
+        "development": [
+          "Google Base Title", "false", "enabled", "0"
+        ],
+        "staging": [
+          "Google Base Tracing", "false", "disabled", "0"
+        ],
+        "production": [
+          "Google Base Analysis", "true", "disabled", "0"
+        ]
+      },
+      {
+        "id": 2,
+        "name": "enableFacebookLogin",
+        "development": [
+          "Facabook Login in development", "true", "enabled", "24"
+        ],
+        "staging": [
+          "Facabook Login in staging", "false", "disabled", "0"
+        ],
+        "production": [
+          "Facabook Login in production", "false", "disabled", "0"
+        ]
+      },
+      {
+        "id": 3,
+        "name": "enableAnchors",
+        "development": [
+          "Anchors in development", "true", "disabled", "0"
+        ],
+        "staging": [
+          "Anchors in staging", "true", "disabled", "0"
+          ],
+        "production": [
+          "Anchors in production", "false", "disabled", "0"
+        ]
+      },
+      {
+        "id": 4,
+        "name": "HomePage Wide Format",
+        "development": [
+          "homepage in development", "true", "disabled", "0"
+        ],
+        "staging": [
+          "homepage in staging", "true", "disabled", "0"
+          ],
+        "production": [
+          "homepage in production", "true", "disabled", "0"
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Apaptivity",
+        "development": [
+          "Apaptivity in development", "true", "enabled", "0"
+        ],
+        "staging": [
+          "Apaptivity in staging", "true", "enabled", "0"
+          ],
+        "production": [
+          "Apaptivity in production", "false", "disabled", "0"
+        ]
+      }
+    ]
+}
