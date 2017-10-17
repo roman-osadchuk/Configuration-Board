@@ -1,0 +1,287 @@
+
+
+/********************* LOGIN **********************/
+
+.incorrect_log_pass {
+    color: #fd2302;
+    border: 2px solid #fd2302;
+}
+
+
+
+#login_container > form > div > button {
+    border: 1px solid #036da6;
+    background-color: rgba(3, 109, 166, 0.2);
+    color: #036da6;
+}
+
+
+/**************** GROUPS TABLE *****************/
+
+#table_groups_header {
+    background-color: #353739;
+    color: #f3f5f7;
+}
+
+/*#upload_file_container {
+    align-self: center;
+    margin-left: 60px;
+}*/
+
+#table_groups_header > div > span {
+    font: 36px 'Lucida Grande', sans-serif;
+    font-weight: bold;
+    color: #d5d5d5;
+}
+
+.main_groups_table > thead > tr > th,
+.main_groups_table > tbody > tr > td {
+    border: 1px solid #ab1b36;
+}
+
+.main_groups_table > tbody > tr:last-of-type > td {
+    border-bottom: 1px solid #ab1b36;
+}
+
+.main_groups_table > tbody > tr:nth-child(2n-1) > td {
+    background-color: rgba(171, 27, 54, 0.5);
+    color: #c3c0a1;
+}
+
+.main_groups_table > tbody > tr:nth-child(2n) > td {
+    background-color:#ffffff;
+    color: #ab1b36;
+}
+
+.main_groups_table > thead > tr > th {
+    background-color: #ab1b36;
+    color: #c3c0a1;
+}
+
+/********************** MAIN TABLE **********************/
+
+
+
+#main_table_header {
+    background-color: #353739;
+}
+
+#main_table_header > span {
+    margin-left: 10%;
+    font: 36px 'Lucida Grande', sans-serif;
+    color: #d5d5d5;
+}
+
+.main_table > thead > tr > th,
+.main_table > tbody > tr > td {
+    border: 1px solid #ab1b36;
+}
+
+.main_table > tbody > tr:last-of-type > td {
+    border-bottom: 1px solid #ab1b36;
+}
+
+.main_table > tbody > tr:nth-child(2n-1) > td {
+    background-color: rgba(171, 27, 54, 0.5);
+    color: #c3c0a1;
+}
+
+.main_table > tbody > tr:nth-child(2n) > td {
+    background-color:#ffffff;
+    color: #ab1b36;
+}
+
+.main_table > thead > tr > th {
+    background-color: #ab1b36;
+    color: #c3c0a1;
+}
+
+/**************** REVIEW_CHANGES_CONTAINER *****************/
+
+#back_to_groups_container > button {
+    border: 1px solid #ab1b36;
+    background-color: rgba(171, 27, 54, 0.5);
+    color: #c3c0a1;
+}
+
+/*#back_to_groups_container > button:hover {
+    cursor: pointer;
+}*/
+
+#Review_changes_container > button {
+    border: 1px solid #ab1b36;
+    background-color: rgba(171, 27, 54, 0.5);
+    color: #c3c0a1;
+}
+
+/*#Review_changes_container > button:hover {
+    cursor: pointer;
+}*/
+
+
+/************ Site Preference Table **************/
+
+
+#site_preference_table > caption {
+    color: #036da6;
+}
+
+#site_preference_table > thead > tr > th,
+#site_preference_table > tbody > tr > td {
+    border: 1px solid #ab1b36;
+   
+}
+
+#site_preference_table > tbody > tr:last-of-type > td {
+    border-bottom: 1px solid #ab1b36;
+}
+
+#site_preference_table > tbody > tr:nth-child(2n-1) > td {
+    background-color: #c3c0a1;
+    color: #ab1b36;
+}
+
+#site_preference_table > tbody > tr:nth-child(2n) > td {
+    background-color:#ffffff;
+    color: #ab1b36;
+}
+
+#site_preference_table > thead > tr > th {
+    background-color: #ab1b36;;
+    color: #c3c0a1;
+}
+
+.div-for-edit-button > button {
+    border: 1px solid #ab1b36;
+    background-color: #c3c0a1;
+    color: #ab1b36;
+}
+
+.div-for-edit-button > button:hover {
+    background-color: #ab1b36;
+    color: #c3c0a1;
+    border: 1px solid #c3c0a1;
+}
+
+/************ MODAL WINDOW *************/
+
+.modal-table > tbody > tr > td,
+.modal-table > thead > tr > td {
+    border-left: 1px solid #ab1b36;
+}
+
+.modal-table > tbody > tr:nth-child(odd) {
+    background-color: #ab1b36;
+    color: #c3c0a1;
+}
+
+.modal-table > tbody > tr:nth-child(even) {
+    background-color: #c3c0a1;
+    color: #ab1b36;
+}
+
+.modal-table > thead > tr > td {
+    background-color:rgba(3, 109, 166, 0.6);
+    border: 1px solid #036da6;
+    color: #01537f;
+    font-weight: bold;
+}
+
+.div-for-edit-button > button:nth-of-type(1) {
+    border: 1px solid #ab1b36;
+    background-color: #c3c0a1;
+    color: #ab1b36;
+}
+
+.div-for-edit-button > button:nth-of-type(2) {
+    border: 1px solid #ab1b36;
+    background-color: #c3c0a1;
+    color: #ab1b36;
+}
+
+#edit_button {
+    border: 1px solid #ab1b36;
+    background-color: #c3c0a1;
+    color: #ab1b36;
+}
+
+.div-for-edit-button > button:hover {
+   background-color: #ab1b36;
+    color: #c3c0a1;
+    border: 1px solid #c3c0a1;
+}
+
+
+
+/****************** MODAL EDIT ELEMENTS *******************/
+
+.initialize {
+    border: 1px solid #ab1b36;
+    background-color: #c3c0a1;
+    color: #ab1b36;
+}
+
+.closeInitialize {
+    border: 1px solid #ab1b36;
+    background-color: #c3c0a1;
+    color: #ab1b36;
+}
+
+/*.initialize:hover,
+.closeInitialize:hover {
+    cursor: pointer;
+}*/
+
+.not_initialized {
+    color: #999999;
+}
+
+
+/******************** DESCRIPTION IN MODAL ***********************/
+
+
+
+/******************** TOOLTIP *********************/
+
+.description_hinter .description_hinter_text {
+    background-color: #555;
+    color: #fff;
+   
+}
+
+.description_hinter .description_hinter_text::after {
+    border-color: #555 transparent transparent transparent;
+}
+
+/****************** SETTINGS CONTAINER *****************/
+
+.fa-cogs {
+    color: #353739;
+}
+
+#sub_menu {
+    background-color: #EDEBE8;
+    border-left:3px solid #353739;
+}
+
+.sub_menu_title {   
+    color: #353739;
+}
+
+#theme_menu > li {
+    color: #353739;
+}
+
+/***************** RADIO BUTTONS ******************/
+
+.slider {
+    background-color: #ccc;
+}
+
+input:checked + .slider {
+    background-color:rgba(3, 109, 166, 0.6);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
