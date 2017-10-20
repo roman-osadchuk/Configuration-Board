@@ -461,54 +461,47 @@ function readSitePreferenceDefinition(XMLName, callback) {
                         // Create new sitePreferenceDefinition
                         definition.id = definitionId;
     
-                        if ((typeof (parent[standardOrCustom][0]['attribute-definition'][i]['display-name']) !== 'undefined') && ((typeof parent[standardOrCustom][0]['attribute-definition'][i]['display-name'][0]['_']) === 'string')) {
-                                definition.name = parent[standardOrCustom][0]['attribute-definition'][i]['display-name'][0]['_'];
+                        if ((typeof (parent[standardOrCustom][0]['attribute-definition'][i]['display-name']) !== 'undefined') /* && ((typeof parent[standardOrCustom][0]['attribute-definition'][i]['display-name'][0]['_']) === 'string') */) {
+                            definition.name = parent[standardOrCustom][0]['attribute-definition'][i]['display-name'][0]['_'];
                         } 
     
-    
-                        if ((typeof(parent[standardOrCustom][0]['attribute-definition'][i]['description']) !== 'undefined')  && ((typeof parent[standardOrCustom][0]['attribute-definition'][i]['description'][0]['_']) === 'string')){
+                        if ((typeof(parent[standardOrCustom][0]['attribute-definition'][i]['description']) !== 'undefined')  /* && ((typeof parent[standardOrCustom][0]['attribute-definition'][i]['description'][0]['_']) === 'string') */) {
                             definition.description = parent[standardOrCustom][0]['attribute-definition'][i]['description'][0]['_'];
                         }
                         
                         if (typeof(parent[standardOrCustom][0]['attribute-definition'][i]['type']) !== 'undefined') {
                             definition.type = parent[standardOrCustom][0]['attribute-definition'][i]['type'][0];
-                            if (definition.type == 'string'){
-    
-                                if ((typeof(parent[standardOrCustom][0]['attribute-definition'][i]['min-length'])) !== 'undefined' && (typeof(+parent[standardOrCustom][0]['attribute-definition'][i]['min-length']) === 'number')){
-                                    definition.minLength = parent[standardOrCustom][0]['attribute-definition'][i]['min-length'][0];
-                                } 
-    
-                                if ((typeof(parent[standardOrCustom][0]['attribute-definition'][i]['max-length'])) !== 'undefined' && (typeof(+parent[standardOrCustom][0]['attribute-definition'][i]['max-length'][0]) === 'number')){
-                                    definition.maxLength = parent[standardOrCustom][0]['attribute-definition'][i]['max-length'][0];
-    
-                                } 
-                            }else if (definition.type == 'number'){
-    
-    
-                                if ((typeof(parent[standardOrCustom][0]['attribute-definition'][i]['min-value'])) !== 'undefined' && (typeof(+parent[standardOrCustom][0]['attribute-definition'][i]['min-value'][0]) === 'number')){
-                                    definition.minValue = parent[standardOrCustom][0]['attribute-definition'][i]['min-value'][0];
-                                }
-    
-                                if((typeof(parent[standardOrCustom][0]['attribute-definition'][i]['max-value'])) !== 'undefined' && (typeof(+parent[standardOrCustom][0]['attribute-definition'][i]['max-value'][0]) === 'number')){
-                                    definition.maxValue = parent[standardOrCustom][0]['attribute-definition'][i]['min-value'][0];
-                                }
-                            }
                         }
     
-                        if ((typeof(parent[standardOrCustom][0]['attribute-definition'][i]['mandatory-flag']) !== 'undefined') && (typeof(parent[standardOrCustom][0]['attribute-definition'][i]['mandatory-flag'][0]) === 'boolean')) {
+                        if ((typeof(parent[standardOrCustom][0]['attribute-definition'][i]['min-length'])) !== 'undefined' /* && (typeof(+parent[standardOrCustom][0]['attribute-definition'][i]['min-length']) === 'number') */) {
+                            definition.minLength = parent[standardOrCustom][0]['attribute-definition'][i]['min-length'][0];
+                        } 
+
+                        if ((typeof(parent[standardOrCustom][0]['attribute-definition'][i]['max-length'])) !== 'undefined' /* && (typeof(+parent[standardOrCustom][0]['attribute-definition'][i]['max-length'][0]) === 'number') */) {
+                            definition.maxLength = parent[standardOrCustom][0]['attribute-definition'][i]['max-length'][0];
+                        } 	
+                            
+                        if ((typeof(parent[standardOrCustom][0]['attribute-definition'][i]['min-value'])) !== 'undefined' /* && (typeof(+parent[standardOrCustom][0]['attribute-definition'][i]['min-value'][0]) === 'number') */){
+                            definition.minValue = parent[standardOrCustom][0]['attribute-definition'][i]['min-value'][0];
+                        }
+
+                        if ((typeof(parent[standardOrCustom][0]['attribute-definition'][i]['max-value'])) !== 'undefined' /* && (typeof(+parent[standardOrCustom][0]['attribute-definition'][i]['max-value'][0]) === 'number') */ ){
+                            definition.maxValue = parent[standardOrCustom][0]['attribute-definition'][i]['max-value'][0];
+                        }
+                        
+                        if ((typeof(parent[standardOrCustom][0]['attribute-definition'][i]['mandatory-flag']) !== 'undefined') /* && (typeof(parent[standardOrCustom][0]['attribute-definition'][i]['mandatory-flag'][0]) === 'boolean') */) {
                             definition.mandatory = parent[standardOrCustom][0]['attribute-definition'][i]['mandatory-flag'][0];
                         } 
     
-                        if ((typeof(parent[standardOrCustom][0]['attribute-definition'][i]['field-length'])) !== 'undefined' && (typeof(+parent[standardOrCustom][0]['attribute-definition'][i]['field-length']) === 'number'))  {
+                        if ((typeof(parent[standardOrCustom][0]['attribute-definition'][i]['field-length'])) !== 'undefined' /* && (typeof(+parent[standardOrCustom][0]['attribute-definition'][i]['field-length']) === 'number') */)  {
                             definition.fieldLength = parent[standardOrCustom][0]['attribute-definition'][i]['field-length'][0];
                         }
     
-    
-                        if ((typeof(parent[standardOrCustom][0]['attribute-definition'][i]['default-value']) !== 'undefined') && (typeof(parent[standardOrCustom][0]['attribute-definition'][i]['default-value'][0]) == definition.type)) {
+                        if ((typeof(parent[standardOrCustom][0]['attribute-definition'][i]['default-value']) !== 'undefined') /* && (typeof(parent[standardOrCustom][0]['attribute-definition'][i]['default-value'][0]) == definition.type) */) {
                             definition.defaultValue = parent[standardOrCustom][0]['attribute-definition'][i]['default-value'][0];
                         } 
                         
-                        if ((typeof(parent[standardOrCustom][0]['attribute-definition'][i]['regexp']) !== 'undefined') && (typeof( parent[standardOrCustom][0]['attribute-definition'][i]['regexp'][0]) === 'string')) {
+                        if ((typeof(parent[standardOrCustom][0]['attribute-definition'][i]['regexp']) !== 'undefined') /* && (typeof( parent[standardOrCustom][0]['attribute-definition'][i]['regexp'][0]) === 'string') */) {
                             definition.regexp = parent[standardOrCustom][0]['attribute-definition'][i]['regexp'][0];
                         } 
     
@@ -560,11 +553,11 @@ function readSitePreferences(definitions, fn) {
 
     var sitePreferences = {};
     var counter = 0;
-
     fs.readdir(Config.dataDir + '/working/' + Config.latestChanges + '/Demandware SitePreferences/sites', function (err, list) {
-
+       
         // Get every folder(site)
         list.forEach(function (folder) {
+            
             var preferences = new SitePreferences(definitions);
             preferences.siteId = folder;
 
@@ -629,7 +622,7 @@ function postSitePreferences(jsonFromFrontEnd) {
 
     //var content = fs.readFileSync(Config.dataDir + '/frontEndJSON.json', 'utf8');
     //var objFromFrontEnd = JSON.parse(jsonFromFrontEnd);
-    //console.log(objFromFrontEnd);
+    
     var objFromFrontEnd = jsonFromFrontEnd;
 
     var definitions = {}; // sitePrefDef
@@ -657,7 +650,31 @@ function postSitePreferences(jsonFromFrontEnd) {
                 //Create sitePreference
                 var preference = new SitePreference(definitions);
                 preference.id = objFromFrontEnd.sitePreferences[sitePref].id;
-                preference.value = objFromFrontEnd.sitePreferences[sitePref].values[enviroment][sites];
+                
+                var validationObj = objFromFrontEnd.sitePreferences[sitePref];
+                
+                switch (validationObj.type) {
+                    case 'string':
+                        if ((typeof validationObj.maxLength !== 'undefined' && validationObj.values[enviroment][sites].length > validationObj.maxLength) || (typeof validationObj.minLength !== 'undefined' && validationObj.values[enviroment][sites].length < validationObj.minLength) || (typeof validationObj.regexp !== 'undefined' && !validationObj.regexp.test(validationObj.values[enviroment][sites]))) {
+                            preference.value = '';
+                        } else {
+                            preference.value = validationObj.values[enviroment][sites];
+                        }
+
+                        break;
+                    
+                    case 'number':
+                        if ((typeof validationObj.maxValue !== 'undefined' && +validationObj.values[enviroment][sites] > validationObj.maxValue) || (typeof validationObj.minValue !== 'undefined' && +validationObj.values[enviroment][sites] < validationObj.minValue)) {
+                            preference.value = '';
+                        } else {
+                            preference.value = validationObj.values[enviroment][sites];
+                        }
+
+                        break;
+                    
+                    default:
+                    	preference.value = validationObj.values[enviroment][sites];
+                }
 
                 // If site exist -> add new preference
                 if (Object.keys(sitePreferences).find((name) => {return name == sites}) == sites) {
@@ -768,6 +785,6 @@ module.exports = {
     'createSitePreferenceDefinition': createSitePreferenceDefinition,
     'updateSitePreferenceDefinition': updateSitePreferenceDefinition,
     'deleteSitePreferenceDefinition': deleteSitePreferenceDefinition,
-    'objectModelToXML': objectModelToXML, // without parameters
-    'createJSONforFrontEnd': createJSONforFrontEnd // without parameters
+    'objectModelToXML': objectModelToXML, 
+    'createJSONforFrontEnd': createJSONforFrontEnd 
 }

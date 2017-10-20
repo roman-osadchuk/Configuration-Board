@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux'
+import axios from 'axios'
+import * as ActionCreators from '../../actions/mainStoreActions'
 
 
-export default class ModalTableEditInfo extends Component {
+class ModalTableEditInfo extends Component {
 
     constructor(props) {
         super(props);
@@ -16,6 +19,10 @@ export default class ModalTableEditInfo extends Component {
         this.handleInput = this.handleInput.bind(this);
         this.validate = this.validate.bind(this);
         this.showFullDescription = this.showFullDescription.bind(this);
+
+        this.updateModalEditInfoValues = this.updateModalEditInfoValues.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
+
     };
 
     //retreiving unique locations and updating income abject to make all deployements have the same properties
@@ -91,7 +98,7 @@ export default class ModalTableEditInfo extends Component {
         }
     };
 
-    // If type === number enter only digits 
+    // If type === number enter only digits
     validate(evt) {
         var theEvent = evt || window.event;
         var key = theEvent.keyCode || theEvent.which;
@@ -113,11 +120,18 @@ export default class ModalTableEditInfo extends Component {
 
         const allInstances = this.props.content.values.allInstances;
         const type = this.props.content.type;
-        const defaultValue = this.props.content.defaultValue === undefined
-            ?
-            ((type === 'boolean') ? false : '')
-            :
-            this.props.content.defaultValue;
+        let defaultValue;
+        if ( this.props.content.defaultValue === undefined ) {
+            if ( type === 'boolean' ) {
+                defaultValue = false;
+            } else if ( type === 'string' ) {
+                defaultValue = '';
+            } else {
+                defaultValue = 0;
+            }
+        } else {
+            defaultValue = this.props.content.defaultValue;
+        }
 
         //modified values
         const development = this.state.inputsStack.development;
@@ -233,24 +247,30 @@ export default class ModalTableEditInfo extends Component {
 
             // Validation
             let errorMsg = document.getElementById('error_validation_msg_info');
+            const maxLength = this.props.content.maxLength;
+            const minLength = this.props.content.minLength;
+            const minValue = this.props.content.minValue;
+            const maxValue = this.props.content.maxValue;
+            const regexp = this.props.content.regexp;
 
             switch(type) {
-                case 'number': {
-                    if (value < 0 || value > 999999) {
-                        errorMsg.innerHTML = 'Error! Please, enter a number between 0 and 999999.';
+                case 'number': 
+                    if ((typeof maxValue !== 'undefined' && +value > maxValue) || (typeof minValue!== 'undefined' && +value < minValue)) {
+                        errorMsg.innerHTML = `Error! Please, enter a number between ${minValue} and ${maxValue}.`;
                         errorMsg.style.color = 'red';
                     } else {
                         errorMsg.innerHTML = '';
                     }
-                }
-                case 'string': {
-                    if (value.length > 999999) {
-                        errorMsg.innerHTML = 'Error! Please, enter a smaller string.';
+                    break;
+
+                case 'string': 
+                    if ((typeof maxLength !== 'undefined' && value.length > maxLength) || (typeof minLength !== 'undefined' && value.length < minLength ) || (typeof regexp !== 'undefined' && !regexp.test(value))) {
+                        errorMsg.innerHTML = `Error! Please, enter string length between ${minLength} and ${maxLength}.`;
                         errorMsg.style.color = 'red';
                     } else {
                         errorMsg.innerHTML = '';
                     }
-                }
+                    break;
             }
 
             this.setState({
@@ -268,15 +288,87 @@ export default class ModalTableEditInfo extends Component {
     }
 
 
+    updateModalEditInfoValues() {
+
+        const newValuesInfo = this.state.inputsStack;
+        const reduxArray = this.props.store.sitePreferences;
+
+        const index = reduxArray.findIndex(item =>
+            item.name == this.state.preferenceName
+        );
+
+        const { dispatch, store } = this.props;
+        const action = ActionCreators.updateInfo(newValuesInfo, index);
+        dispatch(action);
+
+        axios.patch('/data/definition', store);
+    };
+
+
+    handleCancel() {
+
+        const deployementInfo = this.state.deployementInfo;
+        const deployementName = this.props.deployement;
+        const initialValues = this.state.initialValues;
+        const allInstances = this.props.content.values.allInstances;
+
+        //modified
+        const development = this.state.inputsStack.development;
+        const staging = this.state.inputsStack.staging;
+        const production = this.state.inputsStack.production;
+
+
+        if ( deployementName === 'development' ) {
+
+            for (let key in development) {
+                if (key in deployementInfo) {
+                    delete development[key];
+                }
+            }
+
+        } else if ( deployementName === 'staging' ) {
+
+            for (let key in staging) {
+                if (key in deployementInfo) {
+                    delete staging[key];
+                }
+            }
+
+        } else if ( deployementName === 'production' ) {
+
+            for (let key in production) {
+                if (key in deployementInfo) {
+                    delete production[key];
+                }
+            }
+
+        };
+
+
+
+        this.setState({
+            inputsStack: { development, staging, production, allInstances }
+        })
+
+    }
+
+
 
     render() {
 
         const type = this.props.content.type;
-        const defaultValue = this.props.content.defaultValue === undefined
-            ?
-            ((type === 'boolean') ? false : '')
-            :
-            this.props.content.defaultValue;
+        let defaultValue;
+        if ( this.props.content.defaultValue === undefined ) {
+            if ( type === 'boolean' ) {
+                defaultValue = false;
+            } else if ( type === 'string' ) {
+                defaultValue = '';
+            } else {
+                defaultValue = 0;
+            }
+        } else {
+            defaultValue = this.props.content.defaultValue;
+        }
 
         const locals = this.state.uniqueLocations;
         //modified parameters
@@ -341,11 +433,24 @@ export default class ModalTableEditInfo extends Component {
                         </tr>
                     </tbody>
                 </table>
+                <p id="error_validation_msg_info"> </p>
                 <div className="descriptionContainer">
                     <h5 className="preferenceDescription" onClick={this.showFullDescription}><b className="description">Description: </b><br/> {this.props.content.description}</h5>
+                </div>
+                <div className='div-for-edit-button'>
+                    <button onClick={this.props.onClick} onMouseDown={this.updateModalEditInfoValues}>Save</button>
+                    <button onClick={this.props.close} onMouseDown={this.handleCancel}>Cancel</button>
                 </div>
             </div>
         );
     }
 
 }
+
+const mapStateToProps = state => {
+    return {
+        store: state.mainStore
+    };
+}
+
+export default connect(mapStateToProps)(ModalTableEditInfo);

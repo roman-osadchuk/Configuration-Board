@@ -4,9 +4,9 @@ import { Router, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
+import jwtDecode from 'jwt-decode';
 import rootReducer from './rootReducer';
 import setAuthorizationToken from './utils/setAuthorizationToken';
-import jwtDecode from 'jwt-decode';
 import { setCurrentUser } from './actions/authActions';
 
 import routes from './routes';

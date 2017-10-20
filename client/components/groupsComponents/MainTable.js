@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import axios from 'axios';
-import * as ActionCreators from '../../actions/mainStoreActions';
 import Themes from './Themes';
 import MainTableBody from './MainTableBody';
 import ModalWindow from './ModalWindow';
 import ModalTableInfo from './ModalTableInfo';
 import ModalTableEditInfo from './ModalTableEditInfo';
 import EditButton from './EditButton';
-import SaveCancelButtons from './SaveCancelButtons';
 import TitleChanges from './TitleChanges';
 import TitleForModalWindow from './TitleForModalWindow';
 import ResetSubmitButtons from './ResetSubmitButtons';
@@ -50,13 +46,6 @@ class MainTable extends Component {
         this.toggleSiteInfoModalEdit = this.toggleSiteInfoModalEdit.bind(this);
         this.toggleConfirmModal = this.toggleConfirmModal.bind(this);
 
-        //this.updateBodySitePrefModalEditValues = this.updateBodySitePrefModalEditValues.bind(this);
-        this.updateModalEditInfoValues = this.updateModalEditInfoValues.bind(this);
-
-        this.toggleReviewModal = this.toggleReviewModal.bind(this);
-
-        //this.handleCancel = this.handleCancel.bind(this);
-
     };
 
     // --------------Site Preferences----------------
@@ -73,22 +62,6 @@ class MainTable extends Component {
             isOpenSitePrefEdit: !this.state.isOpenSitePrefEdit
         });
     };
-
-    // handleCancel() {
-    //     //const newValues = this.refs.updatedValues === undefined ? false : this.refs.updatedValues.state.initialValues;
-    //     const newValues = this.refs.updatedValues.state.initialData;
-    //     //console.log(newValues);
-    //     this.setState({
-    //         preferenceSiteTable : newValues
-    //     }, function() {
-    //         console.log(this.state.preferenceSiteTable);
-    //     });
-    //
-    // };
-
-    // componentDidUpdate() {
-    //     console.log(this.state.preferenceSiteTable.values);
-    // }
 
 
     handleSitePreferencesModal(el) {
@@ -163,41 +136,6 @@ class MainTable extends Component {
         });
     }
 
-     // ----- Updating Values in Redux and sending them to server -----
-
-    // updateBodySitePrefModalEditValues() {
-    //
-    //     const newValues = this.refs.updatedValues.state.inputsStack;
-    //     const reduxArray = this.props.store.sitePreferences;
-    //
-    //     const index = reduxArray.findIndex(item =>
-    //         item.name == this.state.preferenceSite
-    //     );
-    //
-    //     const { dispatch, store } = this.props;
-    //     const action = ActionCreators.updateBodyPref(newValues, index);
-    //     dispatch(action);
-    //
-    //     axios.patch('/data/definition', store);
-    // };
-
-
-    updateModalEditInfoValues() {
-
-        const newValuesInfo = this.refs.updatedValuesInfo.state.inputsStack;
-        const reduxArray = this.props.store.sitePreferences;
-
-        const index = reduxArray.findIndex(item =>
-            item.name == this.state.preferenceName
-        );
-
-        const { dispatch, store } = this.props;
-        const action = ActionCreators.updateInfo(newValuesInfo, index);
-        dispatch(action);
-
-        axios.patch('/data/definition', store);
-    };
-
 
 
     render() {
@@ -208,7 +146,7 @@ class MainTable extends Component {
                 <table id="MAIN_TABLE" className="main_table">
                     <thead>
                         <tr>
-                            <th> Titl </th>
+                            <th> Title </th>
                             <th> Development </th>
                             <th> Staging </th>
                             <th> Production </th>
@@ -248,7 +186,6 @@ class MainTable extends Component {
                     onClose={this.toggleSitePrefModalEdit}
                     title={<TitleForModalWindow caption={this.state.preferenceSite}/>}
                     body={<BodySitePrefModalEdit content={this.state.preferenceSiteTable} onClick={() => {this.toggleConfirmModal(); this.toggleSitePrefModalEdit();}} close={this.toggleSitePrefModalEdit}/>}
-                    // footer={<SaveCancelButtons close={this.toggleSitePrefModalEdit} />
                 >
                 </ModalWindow>
 
@@ -267,21 +204,10 @@ class MainTable extends Component {
                     isActive={this.state.isOpenSiteInfoEdit}
                     onClose={this.toggleSiteInfoModalEdit}
                     title={<TitleForModalWindowInfo caption={this.state.deploymentEnvironment}/>}
-                    body={<ModalTableEditInfo content={this.state.preferenceInfo} deployement={this.state.deploymentName} ref="updatedValuesInfo"/>}
-                    footer={<SaveCancelButtons close={this.toggleSiteInfoModalEdit} onClick={() => {this.updateModalEditInfoValues(); this.toggleConfirmModal();this.toggleSiteInfoModalEdit();}}/>}
+                    body={<ModalTableEditInfo content={this.state.preferenceInfo} deployement={this.state.deploymentName} onClick={() => {this.toggleConfirmModal();this.toggleSiteInfoModalEdit();}} close={this.toggleSiteInfoModalEdit}/>}
                 >
                 </ModalWindow>
 
-
-                {/*Review changes modal*/}
-                {/* <ModalWindow
-                    isActive={this.state.isOpenReviewChanges}
-                    onClose={this.toggleReviewModal}
-                    title={<TitleChanges />}
-                    body={<ChangesTable ref="changesTable"/>}
-                    footer={<ResetSubmitButtons onClick={() => this.refs.changesTable.resetAllRows()} />}
-                >
-                </ModalWindow> */}
 
                 <ModalWindow
                     isActive={this.state.isOpenConfirmModal}
@@ -298,11 +224,6 @@ class MainTable extends Component {
                         </button>
                     </div>
 
-                    {/* <div id="Review_changes_container">
-                        <button onClick={this.toggleReviewModal}>
-                            Review changes
-                        </button>
-                    </div> */}
                 </div>
 
             </div>
@@ -310,10 +231,29 @@ class MainTable extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        store: state.mainStore
-    };
-}
+export default MainTable;
 
-export default connect(mapStateToProps)(MainTable);
+
+
+
+
+
+// <------------------ The Review Changes functionality temporary excluded --------------------->
+
+//this.toggleReviewModal = this.toggleReviewModal.bind(this);
+
+/*Review changes modal*/
+/* <ModalWindow
+    isActive={this.state.isOpenReviewChanges}
+    onClose={this.toggleReviewModal}
+    title={<TitleChanges />}
+    body={<ChangesTable ref="changesTable"/>}
+    footer={<ResetSubmitButtons onClick={() => this.refs.changesTable.resetAllRows()} />}
+>
+</ModalWindow> */
+
+/* <div id="Review_changes_container">
+    <button onClick={this.toggleReviewModal}>
+        Review changes
+    </button>
+</div> */

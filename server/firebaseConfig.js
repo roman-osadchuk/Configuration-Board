@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-let configFireBase = {
+const configFireBase = {
     apiKey: "AIzaSyBirmosAIvIT9zSwRRuD93Cqsz-vu77Hoc",
     authDomain: "epam-dw-rd-lab.firebaseapp.com",
     databaseURL: "https://epam-dw-rd-lab.firebaseio.com",
@@ -11,6 +11,6 @@ let configFireBase = {
 
 firebase.initializeApp(configFireBase);
 
-let ref = firebase.database().ref();
+const ref = firebase.database().ref();
 
-export default ref; 
+export default ref;

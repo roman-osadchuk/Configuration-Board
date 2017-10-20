@@ -827,6 +827,8 @@ A mapping rule based redirection requires a mapping rule at static mappings Site
                 <mandatory-flag>false</mandatory-flag>
                 <externally-managed-flag>false</externally-managed-flag>
                 <min-length>0</min-length>
+                <!-- ADDED Manual -->
+                <max-length>5</max-length>
             </attribute-definition>
             <attribute-definition attribute-id="EnableIParcelShippingQuotes">
                 <display-name xml:lang="x-default">enableIParcelShippingQuotes</display-name>

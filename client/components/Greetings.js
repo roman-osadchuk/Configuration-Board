@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Component} from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-class Greetings extends React.Component {
+class Greetings extends Component {
+
   render() {
+
       const { isAuthenticated } = this.props.auth;
 
       const user_info = (
@@ -13,7 +15,6 @@ class Greetings extends React.Component {
       const guest_info = (
           <h3>Please login to access the data</h3>
       )
-
 
 
     return (

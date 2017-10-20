@@ -10,7 +10,7 @@ import webpackConfig from '../webpack.config.dev';
 import auth from './routes/auth';
 import data from './routes/data';
 
-let app = express();
+const app = express();
 
 app.use(bodyParser.json());
 

@@ -42,7 +42,6 @@
     "jsontoxml": "^0.1.0",
     "jsonwebtoken": "^7.1.7",
     "jwt-decode": "^2.1.0",
-    "latest": "^0.2.0",
     "lodash": "^4.13.1",
     "mongodb": "^2.2.30",
     "mongoose": "^4.11.3",

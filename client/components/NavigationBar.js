@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { logout } from '../actions/authActions';
 import Themes from './groupsComponents/Themes';
 
-class NavigationBar extends React.Component {
+class NavigationBar extends Component {
+
     logout(e) {
         e.preventDefault();
         this.props.logout();
     }
+
 
     home(e) {
         e.preventDefault();
@@ -35,12 +37,12 @@ class NavigationBar extends React.Component {
         return (
             <div id="main_groups_container">
                 <div id="table_groups_header">
-                <div>
-                    <Link to="/">Epam-dw-rd-lab</Link>
                     <div>
-                        { isAuthenticated ? userLinks : guestLinks }
+                        <Link to="/">Epam-dw-rd-lab</Link>
+                        <div>
+                            { isAuthenticated ? userLinks : guestLinks }
+                        </div>
                     </div>
-                </div>
                 </div>
                 <hr/>
             </div>

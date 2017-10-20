@@ -10,10 +10,10 @@ class BodySitePrefModalEdit extends Component {
         super(props);
 
         this.state = {
-            inputsStack: this.props.content.values,
-            initialValues: {development: {}, staging: {}, production: {}, allInstances: {}},
-            initialData: {},
-            uniqueLocations: []
+            inputsStack: this.props.content.values,                                             //contains modified user's inputs which we send to server
+            initialValues: {development: {}, staging: {}, production: {}, allInstances: {}},    //contains immutable initial values (for comparing)
+            initialData: {},                                                                    //contains all income definition (for cancel button)
+            uniqueLocations: []                                                                 //list of unique locations
         };
 
         this.handleInput = this.handleInput.bind(this);
@@ -21,7 +21,6 @@ class BodySitePrefModalEdit extends Component {
         this.showFullDescription = this.showFullDescription.bind(this);
 
         this.updateBodySitePrefModalEditValues = this.updateBodySitePrefModalEditValues.bind(this);
-
 
         this.handleCancel = this.handleCancel.bind(this);
 
@@ -245,24 +244,30 @@ class BodySitePrefModalEdit extends Component {
 
             // Validation
             const errorMsg = document.getElementById('error_validation_msg_pref');
+			const maxLength = this.props.content.maxLength;
+            const minLength = this.props.content.minLength;
+            const minValue = this.props.content.minValue;
+            const maxValue = this.props.content.maxValue;
+            const regexp = this.props.content.regexp;
 
             switch(type) {
-                case 'number': {
-                    if (value < 0 || value > 999999) {
-                        errorMsg.innerHTML = 'Error! Please, enter a number between 0 and 999999.';
+                case 'number': 
+                    if ((typeof maxValue !== 'undefined' && +value > maxValue) || (typeof minValue !== 'undefined' && +value < minValue)) {
+                        errorMsg.innerHTML = `Error! Please, enter a number between ${minValue} and ${maxValue}.`;
                         errorMsg.style.color = 'red';
                     } else {
                         errorMsg.innerHTML = '';
                     }
-                }
-                case 'string': {
-                    if (value.length > 999999) {
-                        errorMsg.innerHTML = 'Error! Please, enter a smaller string.';
+                    break;
+
+                case 'string': 
+                    if ((typeof maxLength !== 'undefined' && value.length > maxLength) || (typeof minLength !== 'undefined' && value.length < minLength ) || (typeof regexp !== 'undefined' && !regexp.test(value))) {
+                        errorMsg.innerHTML = `Error! Please, enter string length between ${minLength} and ${maxLength}.`;
                         errorMsg.style.color = 'red';
                     } else {
                         errorMsg.innerHTML = '';
                     }
-                }
+                    break;
             }
 
             this.setState({

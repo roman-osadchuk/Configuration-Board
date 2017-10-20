@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addFlashMessage } from '../actions/flashMessages';
 
 export default function(ComposedComponent) {
-    class Authenticate extends React.Component {
+    class Authenticate extends Component {
         componentWillMount() {
             if (!this.props.isAuthenticated) {
                 this.props.addFlashMessage({

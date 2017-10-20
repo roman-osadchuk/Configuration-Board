@@ -55,6 +55,10 @@ class MainGroups extends Component {
         e.props.note.preferences.forEach(el => {
             sitePreferences.filter((item, index, arr) => {
                 if ( el === item.id ) {
+                    //omit definitions with all empty values
+                    if (Object.keys(item.values.development).length === 0 && Object.keys(item.values.staging).length === 0 && Object.keys(item.values.production).length === 0) {
+                        return
+                    }
                     group.push(arr[index]);
                 }
             });

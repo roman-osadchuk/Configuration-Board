@@ -40,7 +40,7 @@
 }
 
 .main_groups_table > tbody > tr:last-of-type > td {
-    border-bottom: 1px solid #FFD700;   
+    border-bottom: 1px solid #FFD700;
 }
 
 .main_groups_table > tbody > tr:nth-child(2n-1) > td {
@@ -87,7 +87,6 @@
 }
 
 .main_table > tbody > tr:nth-child(2n) > td {
-    background-color:#ffffff;
     color: #FFD700;
 }
 
@@ -269,7 +268,7 @@
     border-left:3px solid #353739;
 }
 
-.sub_menu_title {   
+.sub_menu_title {
     color: #353739;
 }
 

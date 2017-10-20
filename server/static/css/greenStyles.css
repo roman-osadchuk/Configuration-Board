@@ -49,7 +49,6 @@
 }
 
 .main_groups_table > tbody > tr:nth-child(2n) > td {
-    background-color:#ffffff;
     color: #000000;
 }
 
@@ -87,7 +86,6 @@
 }
 
 .main_table > tbody > tr:nth-child(2n) > td {
-    background-color:#ffffff;
     color: #000000;
 }
 
@@ -129,7 +127,7 @@
 #site_preference_table > thead > tr > th,
 #site_preference_table > tbody > tr > td {
     border: 1px solid #000000;
-   
+
 }
 
 #site_preference_table > tbody > tr:last-of-type > td {
@@ -250,7 +248,7 @@
 .description_hinter .description_hinter_text {
     background-color: #555;
     color: #fff;
-   
+
 }
 
 .description_hinter .description_hinter_text::after {
@@ -268,7 +266,7 @@
     border-left:3px solid #353739;
 }
 
-.sub_menu_title {   
+.sub_menu_title {
     color: #353739;
 }
 
